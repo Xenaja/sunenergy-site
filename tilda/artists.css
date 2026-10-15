@@ -47,15 +47,15 @@
 }
 .mpa-card__name {
   font-family: var(--mpa-font-head);
-  font-size: 26px; line-height: 1.25; font-weight: 600; margin: 50px 0 0;
+  font-size: 26px; line-height: 1.25; font-weight: 700; margin: 40px 0 0;
 }
-.mpa-card__line { width: 75px; height: 2px; background: var(--mpa-text); margin: 34px 0 40px; }
+.mpa-card__line { width: 56px; height: 1px; background: var(--mpa-text); opacity: .6; margin: 22px 0 18px; }
 .mpa-card__more {
   align-self: flex-start; background: none; border: 0; padding: 0; cursor: pointer;
-  color: var(--mpa-text); font-family: var(--mpa-font-btn); font-size: 22px; font-weight: 500;
+  color: var(--mpa-text); font-family: var(--mpa-font-btn); font-size: 16px; font-weight: 400; letter-spacing: .06em; opacity: .85;
   transition: color .2s;
 }
-.mpa-card__more:hover, .mpa-card__more:focus-visible { color: var(--mpa-yellow); }
+.mpa-card__more:hover, .mpa-card__more:focus-visible { color: var(--mpa-yellow); opacity: 1; }
 
 /* Попап «Подробнее» */
 .mpa-modal { position: fixed; inset: 0; z-index: 99999; display: none; align-items: center; justify-content: center; padding: 16px; }
@@ -93,8 +93,8 @@
   .mpa__lead { font-size: 17px; }
   .mpa__grid { grid-template-columns: 1fr; padding: 0 30px; margin-top: 36px; gap: 50px; }
   .mpa-card__name { font-size: 22px; margin-top: 30px; }
-  .mpa-card__line { margin: 20px 0 24px; }
-  .mpa-card__more { font-size: 18px; }
+  .mpa-card__line { margin: 16px 0 14px; }
+  .mpa-card__more { font-size: 15px; }
   .mpa-modal { padding: 0; }
   .mpa-modal__box { max-height: 100vh; height: 100%; }
   .mpa-modal__photo { height: 300px; }

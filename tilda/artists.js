@@ -55,7 +55,7 @@
   // Шрифты: Philosopher — заголовки, Montserrat — кнопки и текст попапа
   var fonts = document.createElement('link');
   fonts.rel = 'stylesheet';
-  fonts.href = 'https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Montserrat:wght@300;500&display=swap';
+  fonts.href = 'https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Montserrat:wght@300;400;500&display=swap';
   document.head.appendChild(fonts);
 
   function esc(t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
