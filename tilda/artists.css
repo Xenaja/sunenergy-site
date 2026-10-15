@@ -5,7 +5,7 @@
   --mpa-yellow: #f2cf4a;
   --mpa-red: #d25a5e;
   --mpa-ring: #8c8270;
-  --mpa-font-head: inherit;   /* шрифты Тильды подхватятся сами; можно вписать свой */
+  --mpa-font-head: 'Philosopher', Georgia, serif;   /* шрифт заголовков сайта */
   --mpa-font-body: inherit;
   --mpa-font-btn: 'Montserrat', Arial, sans-serif;
 }
