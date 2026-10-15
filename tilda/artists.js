@@ -8,11 +8,13 @@
   ============================================================ */
 (function () {
   /* ====== ДАННЫЕ: правим только здесь ======
-     photo — путь к фото в папке img ('img/pavitra.png') или полная ссылка https://...
+     photo — путь к фото в папке img ('img/Pavitra.jpg', регистр букв важен) или полная ссылка https://...
+     pos   — какая часть фото попадёт в кружок и в попап: 'по горизонтали по вертикали',
+             '50% 50%' — центр, '35% 50%' — левее, '50% 25%' — выше. Можно не указывать.
      bio   — текст для попапа «Подробнее» в обратных кавычках `...`; абзацы разделяем пустой строкой. */
   var ARTISTS = [
-    { name: 'Татьяна Валеева', photo: '', bio: 'Текст о Татьяне Валеевой.' },
-    { name: 'Павитра', photo: 'img/pavitra.png', bio: `
+    { name: 'Татьяна Валеева', photo: 'img/Valeeva.jpg', pos: '50% 31%', bio: 'Текст о Татьяне Валеевой.' },
+    { name: 'Павитра', photo: 'img/Pavitra.jpg', pos: '36% 50%', bio: `
 Павитра – проводник Три йоги, Парной йоги и Тантры, гонг-медитации. Более 20 лет практикует и проводит йогу, медитацию, дыхательные практики и sound-healing.
 
 Проводит сеансы массажа: классический, висцеральный, тайский, виброакустический (тибетская чаша и гонг), биоэнергетический.
@@ -23,7 +25,7 @@
 
 «Йога – это не два квадратных метра коврика, а километры нашей жизни. Йога – это не упражнения, а непрерывное состояние Гармонии и Единства!»` },
     { name: 'Юра Ра',           photo: '', bio: 'Текст о Юре Ра.' },
-    { name: 'Андрей Захаревич', photo: '', bio: 'Текст об Андрее Захаревиче.' }
+    { name: 'Андрей Захаревич', photo: 'img/Zakharevich.jpg', pos: '45% 30%', bio: 'Текст об Андрее Захаревиче.' }
   ];
 
   var TEXT = {
@@ -78,7 +80,8 @@
   var frame = frameSVG();
   var cards = ARTISTS.map(function (a, i) {
     var pic = a.photo
-      ? '<img class="mpa-card__photo" src="' + esc(url(a.photo)) + '" alt="' + esc(a.name) + '" loading="lazy">'
+      ? '<img class="mpa-card__photo" src="' + esc(url(a.photo)) + '" alt="' + esc(a.name) + '" loading="lazy"' +
+        (a.pos ? ' style="object-position:' + esc(a.pos) + '"' : '') + '>'
       : '<div class="mpa-card__initials">' + esc(initials(a.name)) + '</div>';
     return '<div class="mpa-card"><div class="mpa-card__frame">' + frame + pic + '</div>' +
       '<h3 class="mpa-card__name">' + esc(a.name) + '</h3><div class="mpa-card__line"></div>' +
@@ -114,7 +117,9 @@
     modal.querySelector('.mpa-modal__name').textContent = a.name;
     modal.querySelector('.mpa-modal__bio').innerHTML =
       a.bio.trim().split(/\n\s*\n/).map(function (p) { return '<p>' + esc(p.trim()) + '</p>'; }).join('');
-    if (a.photo) { mPhoto.src = url(a.photo); mPhoto.alt = a.name; mPhoto.hidden = false; } else { mPhoto.hidden = true; }
+    if (a.photo) {
+      mPhoto.src = url(a.photo); mPhoto.alt = a.name; mPhoto.style.objectPosition = a.pos || ''; mPhoto.hidden = false;
+    } else { mPhoto.hidden = true; }
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
