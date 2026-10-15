@@ -1,0 +1,58 @@
+/* Блок «Поток „Бизнес и успех“». Подключается из business.js автоматически. */
+.sebz {
+  --bz-navy: #2d2b5f;
+  --bz-card: #37356f;
+  --bz-gold: #f2cf4a;
+  --bz-yellow: #fcc200;
+  --bz-red: #d25a5e;
+  --bz-font-head: 'Philosopher', Georgia, serif;
+  --bz-font-body: 'Montserrat', Arial, sans-serif;
+  background: var(--bz-navy);
+  color: #fff;
+  padding: 80px 16px;
+  font-family: var(--bz-font-body);
+}
+.sebz *, .sebz *::before, .sebz *::after { box-sizing: border-box; }
+.sebz__inner { max-width: 1100px; margin: 0 auto; }
+.sebz__head { text-align: center; max-width: 760px; margin: 0 auto 48px; }
+.sebz__eyebrow {
+  display: inline-block; margin: 0 0 18px; padding: 7px 16px; border: 1px solid var(--bz-gold);
+  color: var(--bz-gold); font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+}
+.sebz__title {
+  font-family: var(--bz-font-head); font-weight: 700;
+  font-size: clamp(32px, 4.4vw, 52px); line-height: 1.15; text-transform: uppercase;
+  margin: 0 0 20px; text-wrap: balance;
+}
+.sebz__title span { color: var(--bz-gold); }
+.sebz__lead { font-size: 18px; line-height: 1.6; margin: 0; opacity: .9; }
+
+.sebz__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.sebz__card { position: relative; min-width: 0; background: var(--bz-card); padding: 36px 32px 24px; }
+.sebz__card::before, .sebz__card::after { content: ''; position: absolute; width: 24px; height: 24px; border: 0 solid var(--bz-yellow); }
+.sebz__card::before { top: 0; left: 0; border-top-width: 3px; border-left-width: 3px; }
+.sebz__card::after { bottom: 0; right: 0; border-bottom-width: 3px; border-right-width: 3px; }
+.sebz__card h3 { font-family: var(--bz-font-head); font-weight: 700; font-size: 28px; line-height: 1.2; color: var(--bz-gold); margin: 0 0 6px; }
+.sebz__card p { font-size: 15px; line-height: 1.45; margin: 0 0 16px; opacity: .7; }
+.sebz__card ul { list-style: none; margin: 0; padding: 0; }
+.sebz__card li {
+  display: flex; gap: 14px; align-items: baseline;
+  padding: 14px 0; border-top: 1px solid rgba(255, 255, 255, .13);
+  font-size: 17px; font-weight: 500; line-height: 1.4;
+}
+.sebz__card li::before {
+  content: ''; flex: none; position: relative; top: -1px;
+  border: 6px solid transparent; border-left: 9px solid var(--bz-gold); margin-right: -6px;
+}
+.sebz__foot { text-align: center; font-size: 18px; line-height: 1.55; margin: 40px auto 0; max-width: 700px; }
+.sebz__foot strong { color: var(--bz-gold); font-weight: 600; }
+
+@media (max-width: 800px) {
+  .sebz { padding: 56px 16px; }
+  .sebz__head { margin-bottom: 36px; }
+  .sebz__lead, .sebz__foot { font-size: 16px; }
+  .sebz__grid { grid-template-columns: 1fr; gap: 18px; }
+  .sebz__card { padding: 30px 20px 18px; }
+  .sebz__card h3 { font-size: 25px; }
+  .sebz__card li { font-size: 16px; padding: 12px 0; }
+}
