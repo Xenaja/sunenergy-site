@@ -7,7 +7,7 @@
 (function () {
   /* ====== ДАННЫЕ: правим только здесь; **так** — жирным ====== */
   var EYEBROW = 'Каждый день фестиваля';
-  var TITLE = 'Поток <span>«Бизнес и успех»</span>';
+  var TITLE = 'Поток «Бизнес и успех»';
   var LEAD = 'Отдельная программа для партнёров Full Energy и всех, кто строит свой бизнес. Каждый день — практические занятия: от основ сетевого бизнеса до инструментов, которые помогают расти быстрее и тратить меньше сил.';
   var GROUPS = [
     {
@@ -59,7 +59,7 @@
     '<section class="sebz" id="business"><div class="sebz__inner">' +
       '<div class="sebz__head">' +
         '<p class="sebz__eyebrow">' + esc(EYEBROW) + '</p>' +
-        '<h2 class="sebz__title">' + TITLE + '</h2>' +
+        '<h2 class="sebz__title">' + esc(TITLE) + '</h2>' +
         '<p class="sebz__lead">' + rich(LEAD) + '</p>' +
       '</div>' +
       '<div class="sebz__grid">' +

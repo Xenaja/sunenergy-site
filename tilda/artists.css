@@ -20,7 +20,7 @@
 .mpa__inner { max-width: 1800px; margin: 0 auto; }
 .mpa__title {
   font-family: var(--mpa-font-head);
-  font-size: 46px; line-height: 1.15; font-weight: 600;
+  font-size: 46px; line-height: 1.15; font-weight: 700;
   text-transform: uppercase; text-align: center; margin: 0 0 18px;
 }
 .mpa__lead { font-size: 26px; line-height: 1.4; text-align: center; margin: 0 0 14px; }
