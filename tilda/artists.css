@@ -1,0 +1,104 @@
+/* Блок «Артисты и мастера». Подключается из artists.js автоматически. */
+.mpa, .mpa-modal {
+  --mpa-bg: #2d2b5f;
+  --mpa-text: #ffffff;
+  --mpa-yellow: #f2cf4a;
+  --mpa-red: #d25a5e;
+  --mpa-ring: #8c8270;
+  --mpa-font-head: inherit;   /* шрифты Тильды подхватятся сами; можно вписать свой */
+  --mpa-font-body: inherit;
+  --mpa-font-btn: 'Montserrat', Arial, sans-serif;
+}
+.mpa {
+  background: var(--mpa-bg);
+  color: var(--mpa-text);
+  padding: 30px 16px 90px;
+  font-family: var(--mpa-font-body);
+}
+.mpa *, .mpa *::before, .mpa *::after,
+.mpa-modal *, .mpa-modal *::before, .mpa-modal *::after { box-sizing: border-box; }
+.mpa__inner { max-width: 1800px; margin: 0 auto; }
+.mpa__title {
+  font-family: var(--mpa-font-head);
+  font-size: 46px; line-height: 1.15; font-weight: 600;
+  text-transform: uppercase; text-align: center; margin: 0 0 18px;
+}
+.mpa__lead { font-size: 26px; line-height: 1.4; text-align: center; margin: 0 0 14px; }
+.mpa__grid {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 60px 56px; margin-top: 160px; padding: 0 130px;
+}
+.mpa-card { display: flex; flex-direction: column; }
+.mpa-card__frame { position: relative; width: 100%; aspect-ratio: 1; }
+.mpa-card__frame svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.mpa-card__frame .r { fill: none; stroke: var(--mpa-ring); stroke-width: 1.5; }
+.mpa-card__frame .h { fill: none; stroke: rgba(255,255,255,.06); stroke-width: 30; }
+.mpa-card__frame .y { fill: var(--mpa-yellow); }
+.mpa-card__frame .yl { fill: none; stroke: var(--mpa-yellow); stroke-width: 2; }
+.mpa-card__frame line { stroke: var(--mpa-red); stroke-width: 1.6; stroke-linecap: round; }
+.mpa-card__photo, .mpa-card__initials {
+  position: absolute; left: 50%; top: 50%; width: 64%; height: 64%;
+  transform: translate(-50%, -50%); border-radius: 50%; object-fit: cover;
+}
+.mpa-card__initials {
+  display: flex; align-items: center; justify-content: center;
+  background: #3d3a78; font-size: 48px; color: var(--mpa-yellow);
+}
+.mpa-card__name {
+  font-family: var(--mpa-font-head);
+  font-size: 26px; line-height: 1.25; font-weight: 600; margin: 50px 0 0;
+}
+.mpa-card__line { width: 75px; height: 2px; background: var(--mpa-text); margin: 34px 0 40px; }
+.mpa-card__more {
+  align-self: flex-start; background: none; border: 0; padding: 0; cursor: pointer;
+  color: var(--mpa-text); font-family: var(--mpa-font-btn); font-size: 22px; font-weight: 500;
+  transition: color .2s;
+}
+.mpa-card__more:hover, .mpa-card__more:focus-visible { color: var(--mpa-yellow); }
+
+/* Попап «Подробнее» */
+.mpa-modal { position: fixed; inset: 0; z-index: 99999; display: none; align-items: center; justify-content: center; padding: 16px; }
+.mpa-modal.is-open { display: flex; }
+.mpa-modal__bg { position: absolute; inset: 0; background: rgba(10, 10, 30, .75); }
+.mpa-modal__box {
+  position: relative; max-width: 840px; width: 100%; max-height: 92vh; overflow: auto;
+  background: #faf9f6; color: #111;
+}
+.mpa-modal__x {
+  position: sticky; top: 12px; float: right; margin: 12px 12px -56px 0; z-index: 2;
+  width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(255, 255, 255, .9); color: #111; font-size: 30px; line-height: 44px;
+}
+.mpa-modal__photo { display: block; width: 100%; height: 405px; object-fit: cover; }
+.mpa-modal__photo[hidden] { display: none; }
+.mpa-modal__body { padding: 60px 68px 64px; }
+.mpa-modal__name {
+  font-family: var(--mpa-font-head); font-size: 40px; font-weight: 700;
+  text-align: center; margin: 0 0 24px; color: #111;
+}
+.mpa-modal__bio { font-family: var(--mpa-font-btn); font-size: 22px; font-weight: 300; line-height: 1.6; text-align: left; }
+.mpa-modal__bio p { margin: 0 0 32px; }
+.mpa-modal__bio p:last-child { margin-bottom: 0; }
+
+@media (max-width: 1400px) { .mpa__grid { padding: 0 40px; gap: 50px 36px; } }
+@media (max-width: 1100px) {
+  .mpa__title { font-size: 36px; }
+  .mpa__lead { font-size: 20px; }
+  .mpa__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 70px; padding: 0 60px; }
+}
+@media (max-width: 640px) {
+  .mpa { padding-bottom: 60px; }
+  .mpa__title { font-size: 28px; }
+  .mpa__lead { font-size: 17px; }
+  .mpa__grid { grid-template-columns: 1fr; padding: 0 30px; margin-top: 50px; gap: 50px; }
+  .mpa-card__name { font-size: 22px; margin-top: 30px; }
+  .mpa-card__line { margin: 20px 0 24px; }
+  .mpa-card__more { font-size: 18px; }
+  .mpa-modal { padding: 0; }
+  .mpa-modal__box { max-height: 100vh; height: 100%; }
+  .mpa-modal__photo { height: 300px; }
+  .mpa-modal__body { padding: 36px 20px 40px; }
+  .mpa-modal__name { font-size: 30px; }
+  .mpa-modal__bio { font-size: 17px; }
+  .mpa-modal__bio p { margin-bottom: 20px; }
+}

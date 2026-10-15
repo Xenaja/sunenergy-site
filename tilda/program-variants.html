@@ -1,0 +1,331 @@
+<title>Блок «Каждый день»</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=Montserrat:wght@300;400;500;600;700&display=swap">
+
+<style>
+  /* Макет вариантов в стиле сайта фестиваля: одна тема (цвета сайта), без тёмного/светлого переключения.
+     Каждый вариант — самостоятельная секция с префиксом .v1…v4, выбранный переносится в T123 как есть. */
+  :root {
+    --navy: #2d2b5f;
+    --navy-deep: #232150;
+    --yellow: #fcc200;
+    --gold: #f2cf4a;
+    --red: #d25a5e;
+    --paper: #fbfaf7;
+    --ink: #1f1d45;
+    --font-head: 'Forum', 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    color-scheme: light;
+  }
+  body { background: #e9e7ef; color: var(--ink); font-family: var(--font-body); }
+  * { box-sizing: border-box; }
+  .gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+  .intro { padding-block: 40px 28px; max-width: 1100px; margin: 0 auto; }
+  .intro h1 { font-family: var(--font-head); font-weight: 400; font-size: clamp(30px, 4vw, 44px); margin: 0 0 8px; text-wrap: balance; }
+  .intro p { margin: 0; font-size: 16px; line-height: 1.55; max-width: 65ch; }
+
+  .cap { padding-block: 26px 14px; max-width: 1100px; margin: 0 auto; display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; }
+  .cap b { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; background: var(--navy); color: #fff; padding: 5px 10px; border-radius: 4px; }
+  .cap span { font-size: 15px; line-height: 1.5; min-width: 0; flex: 1 1 300px; }
+
+  .round { max-width: 1100px; margin: 0 auto; padding-block: 34px 0; }
+  .round span { display: block; font-family: var(--font-head); font-size: 28px; border-bottom: 2px solid var(--navy); padding-bottom: 8px; }
+
+  /* ---------- Вариант 5. Рамка ---------- */
+  .v5 { background: var(--navy); color: #fff; padding-block: 90px; }
+  .v5__frame { position: relative; max-width: 1100px; margin: 0 auto; border: 1px solid rgba(242, 207, 74, .45); padding: 64px 56px 52px; }
+  .v5__c { position: absolute; width: 30px; height: 30px; border: 0 solid var(--gold); }
+  .v5__c--tl { top: 10px; left: 10px; border-top-width: 2px; border-left-width: 2px; }
+  .v5__c--tr { top: 10px; right: 10px; border-top-width: 2px; border-right-width: 2px; }
+  .v5__c--bl { bottom: 10px; left: 10px; border-bottom-width: 2px; border-left-width: 2px; }
+  .v5__c--br { bottom: 10px; right: 10px; border-bottom-width: 2px; border-right-width: 2px; }
+  .v5__tri { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); width: 64px; height: 34px; background: var(--navy); padding: 0 10px; box-sizing: content-box; }
+  .v5__tri path { fill: var(--gold); }
+  .v5__title { font-family: var(--font-head); font-weight: 400; font-size: clamp(32px, 4.4vw, 52px); text-transform: uppercase; text-align: center; margin: 0 0 40px; text-wrap: balance; }
+  .v5__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 44px; }
+  .v5__list li { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid rgba(255, 255, 255, .14); font-size: 18px; font-weight: 500; line-height: 1.35; min-width: 0; }
+  .v5__list li::before { content: ''; flex: none; border: 6px solid transparent; border-left: 9px solid var(--gold); margin-right: -6px; }
+  @media (max-width: 900px) { .v5__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) {
+    .v5 { padding-block: 64px; }
+    .v5__frame { padding: 52px 22px 30px; }
+    .v5__list { grid-template-columns: 1fr; }
+    .v5__list li { font-size: 16px; padding: 13px 0; }
+  }
+
+  /* ---------- Вариант 6. По темам ---------- */
+  .v6 { background: var(--paper); color: var(--ink); padding-block: 80px; }
+  .v6__inner { max-width: 1200px; margin: 0 auto; }
+  .v6__title { font-family: var(--font-head); font-weight: 400; font-size: clamp(32px, 4.4vw, 52px); text-transform: uppercase; text-align: center; color: var(--navy); margin: 0 0 44px; text-wrap: balance; }
+  .v6__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .v6__card { background: var(--navy); color: #fff; padding: 34px 26px 22px; position: relative; min-width: 0; }
+  .v6__card::before { content: ''; position: absolute; top: 0; left: 26px; border: 9px solid transparent; border-top: 12px solid var(--gold); }
+  .v6__card h3 { font-family: var(--font-head); font-weight: 400; font-size: 30px; color: var(--gold); margin: 0 0 14px; }
+  .v6__card ul { list-style: none; margin: 0; padding: 0; }
+  .v6__card li { padding: 12px 0; border-top: 1px solid rgba(255, 255, 255, .14); font-size: 17px; font-weight: 500; line-height: 1.35; }
+  @media (max-width: 1000px) { .v6__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) { .v6 { padding-block: 56px; } .v6__grid { grid-template-columns: 1fr; gap: 14px; } .v6__card { padding: 30px 20px 16px; } .v6__card li { font-size: 16px; } }
+
+  /* ---------- Вариант 7. Строкой ---------- */
+  .v7 { background: var(--paper); color: var(--navy); padding-block: 90px; }
+  .v7__inner { max-width: 1060px; margin: 0 auto; text-align: center; }
+  .v7__title { font-family: var(--font-body); font-size: 15px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; margin: 0 0 30px; color: var(--red); }
+  .v7__flow { font-family: var(--font-head); font-size: clamp(24px, 3.5vw, 42px); line-height: 1.5; margin: 0; text-wrap: balance; }
+  .v7__flow span { white-space: nowrap; }
+  .v7__flow svg { display: inline-block; width: .5em; height: .45em; margin: 0 .45em; vertical-align: .12em; }
+  .v7__flow svg path { fill: var(--yellow); }
+  @media (max-width: 600px) { .v7 { padding-block: 60px; } .v7__flow span { white-space: normal; } }
+
+  /* ---------- Вариант 8. Рассвет ---------- */
+  .v8 { background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 60%); color: #fff; padding-block: 70px 90px; }
+  .v8__inner { max-width: 960px; margin: 0 auto; }
+  .v8__sun { display: block; width: min(260px, 70%); margin: 0 auto; }
+  .v8__sun .disc { fill: var(--yellow); }
+  .v8__sun .ray { stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; }
+  .v8__sun .ray-s { stroke: var(--red); stroke-width: 1.2; stroke-linecap: round; }
+  .v8__sun .hor { stroke: rgba(242, 207, 74, .6); stroke-width: 1; }
+  .v8__title { font-family: var(--font-head); font-weight: 400; font-size: clamp(32px, 4.4vw, 52px); text-transform: uppercase; text-align: center; margin: 24px 0 40px; text-wrap: balance; }
+  .v8__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; }
+  .v8__list li { font-family: var(--font-head); font-size: 27px; line-height: 1.25; padding: 16px 0 14px; border-bottom: 1px solid rgba(242, 207, 74, .35); min-width: 0; }
+  @media (max-width: 640px) { .v8 { padding-block: 56px 64px; } .v8__list { grid-template-columns: 1fr; } .v8__list li { font-size: 22px; padding: 13px 0 11px; } }
+
+  /* ---------- Вариант 1. Солнце ---------- */
+  .v1 { background: radial-gradient(circle at 50% 50%, #3a3778 0%, var(--navy) 55%, var(--navy-deep) 100%); color: #fff; padding-block: 70px; overflow: hidden; }
+  .v1__orbit { position: relative; width: min(900px, 100%); aspect-ratio: 1; max-width: 100%; margin: 0 auto; container-type: inline-size; }
+  .v1__rays { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .v1__rays .ring { fill: none; stroke: rgba(242, 207, 74, .35); stroke-width: .3; }
+  .v1__rays .ray { stroke: var(--gold); stroke-width: .5; stroke-linecap: round; }
+  .v1__rays .ray-s { stroke: var(--red); stroke-width: .4; stroke-linecap: round; }
+  .v1__sun {
+    position: absolute; left: 50%; top: 50%; width: 42cqw; aspect-ratio: 1; transform: translate(-50%, -50%);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center;
+    background: radial-gradient(circle at 40% 35%, #ffe27a 0%, var(--yellow) 45%, #f0a500 100%);
+    box-shadow: 0 0 60px rgba(252, 194, 0, .45), 0 0 0 10px rgba(252, 194, 0, .12), 0 0 0 22px rgba(252, 194, 0, .06);
+  }
+  .v1__sun h2 { font-family: var(--font-head); font-weight: 400; color: var(--navy); font-size: 5.2cqw; line-height: 1.05; margin: 0; text-transform: uppercase; }
+  .v1__list { list-style: none; margin: 0; padding: 0; }
+  .v1__list li {
+    --a: calc(var(--i) * 30deg - 75deg);
+    position: absolute; left: 50%; top: 50%; width: 22cqw;
+    transform: translate(-50%, -50%) rotate(var(--a)) translate(40cqw) rotate(calc(-1 * var(--a)));
+    text-align: center; font-size: clamp(11px, 1.5cqw, 14px); font-weight: 600; letter-spacing: .03em;
+    text-transform: uppercase; line-height: 1.3; text-wrap: balance;
+  }
+  @media (max-width: 900px) {
+    .v1 { padding-block: 50px; }
+    .v1__orbit { aspect-ratio: auto; width: 100%; container-type: normal; }
+    .v1__rays { display: none; }
+    .v1__sun { position: relative; left: auto; top: auto; transform: none; width: 230px; margin: 0 auto 44px; }
+    .v1__sun h2 { font-size: 26px; }
+    .v1__list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+    .v1__list li { position: static; transform: none; width: auto; font-size: 13px; text-align: left; padding: 14px 0 14px 18px; border-top: 1px solid rgba(242, 207, 74, .25); position: relative; }
+    .v1__list li::before { content: ''; position: absolute; left: 0; top: 19px; border: 5px solid transparent; border-left: 7px solid var(--gold); }
+  }
+
+  /* ---------- Вариант 2. Плитки с уголками ---------- */
+  .v2 { background: var(--paper); color: var(--ink); padding-block: 80px; }
+  .v2__inner { max-width: 1200px; margin: 0 auto; }
+  .v2__title { font-family: var(--font-head); font-weight: 400; font-size: clamp(34px, 5vw, 58px); text-transform: uppercase; text-align: center; color: var(--navy); margin: 0 0 50px; text-wrap: balance; }
+  .v2__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  .v2__grid li {
+    position: relative; min-height: 150px; padding: 28px 22px 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
+    border: 1px solid rgba(45, 43, 95, .18); background: #fff; transition: background .25s, color .25s;
+    font-size: 16px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; line-height: 1.35;
+  }
+  .v2__grid li::before, .v2__grid li::after { content: ''; position: absolute; width: 22px; height: 22px; border: 0 solid var(--yellow); }
+  .v2__grid li::before { top: -1px; left: -1px; border-top-width: 3px; border-left-width: 3px; }
+  .v2__grid li::after { bottom: -1px; right: -1px; border-bottom-width: 3px; border-right-width: 3px; }
+  .v2__grid svg { width: 26px; height: 22px; }
+  .v2__grid svg path { fill: var(--yellow); }
+  .v2__grid li:hover { background: var(--navy); color: #fff; }
+  @media (max-width: 1000px) { .v2__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .v2 { padding-block: 56px; } .v2__grid { grid-template-columns: 1fr 1fr; gap: 12px; } .v2__grid li { min-height: 120px; padding: 20px 14px 16px; font-size: 13px; } }
+
+  /* ---------- Вариант 3. Бегущие ленты ---------- */
+  .v3 { background: var(--navy); color: #fff; padding-block: 70px 80px; overflow: hidden; }
+  .v3__title { font-family: var(--font-head); font-weight: 400; font-size: clamp(32px, 4.6vw, 54px); text-transform: uppercase; text-align: center; margin: 0 0 46px; color: var(--gold); text-wrap: balance; }
+  .v3__row { display: flex; width: max-content; animation: v3-run 46s linear infinite; }
+  .v3__row + .v3__row { margin-top: 18px; animation-direction: reverse; }
+  .v3__row:hover { animation-play-state: paused; }
+  .v3__row ul { list-style: none; margin: 0; padding: 0; display: flex; }
+  .v3__row li { display: flex; align-items: center; white-space: nowrap; font-family: var(--font-head); font-size: clamp(30px, 4.4vw, 60px); text-transform: uppercase; line-height: 1.2; }
+  .v3__row li:nth-child(even) { color: var(--yellow); }
+  .v3__row li::after { content: ''; width: .28em; height: .28em; margin: 0 .55em; background: var(--red); transform: rotate(45deg); flex: none; }
+  .v3__row--outline li { color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, .85); }
+  .v3__row--outline li:nth-child(even) { color: transparent; -webkit-text-stroke: 1px var(--yellow); }
+  @keyframes v3-run { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .v3__row { animation: none; width: auto; justify-content: center; }
+    .v3__row ul { flex-wrap: wrap; justify-content: center; }
+    .v3__row ul[aria-hidden] { display: none; }
+  }
+
+  /* ---------- Вариант 4. Жёлтый список ---------- */
+  .v4 { background: var(--yellow); color: var(--navy); padding-block: 80px; }
+  .v4__inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 40px 60px; align-items: start; }
+  .v4__title { font-family: var(--font-head); font-weight: 400; font-size: clamp(38px, 5vw, 64px); line-height: 1; text-transform: uppercase; margin: 0; text-wrap: balance; }
+  .v4__title small { display: block; font-family: var(--font-body); font-size: 15px; letter-spacing: .14em; margin-top: 18px; font-weight: 600; }
+  .v4__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; }
+  .v4__list li { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1.5px solid rgba(45, 43, 95, .25); font-size: 19px; font-weight: 500; line-height: 1.3; min-width: 0; }
+  .v4__list li::before { content: ''; flex: none; width: 0; height: 0; border: 7px solid transparent; border-left: 11px solid var(--navy); margin-right: -4px; }
+  @media (max-width: 860px) { .v4__inner { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .v4 { padding-block: 56px; } .v4__list { grid-template-columns: 1fr; } .v4__list li { font-size: 17px; padding: 13px 0; } }
+</style>
+
+<header class="intro gutter">
+  <h1>«Каждый день вас ждут»: варианты блока</h1>
+  <p>Все варианты в цветах сайта, с одним и тем же списком из 12 направлений. Каждый подстраивается под телефон: сузьте окно, чтобы проверить. Сверху новая подборка (5–8): сдержанные варианты, где главное — читаемость. Ниже первая подборка (1–4).</p>
+</header>
+
+<div class="round gutter"><span>Подборка 2 · лаконичные</span></div>
+
+<!-- ===== 5 ===== -->
+<div class="cap gutter"><b>Вариант 5 · Рамка</b><span>Тёмная секция, список в тонкой золотой рамке с уголками и треугольником, как у рамок артистов. Три колонки на компьютере, одна на телефоне. Самый близкий к стилю сайта.</span></div>
+<section class="v5 gutter">
+  <div class="v5__frame">
+    <i class="v5__c v5__c--tl"></i><i class="v5__c v5__c--tr"></i><i class="v5__c v5__c--bl"></i><i class="v5__c v5__c--br"></i>
+    <svg class="v5__tri" viewBox="0 0 64 34" aria-hidden="true"><path d="M32 2 L60 32 H4 Z"/></svg>
+    <h2 class="v5__title">Каждый день вас ждут</h2>
+    <ul class="v5__list js-list"></ul>
+  </div>
+</section>
+
+<!-- ===== 6 ===== -->
+<div class="cap gutter"><b>Вариант 6 · По темам</b><span>Направления разложены на 4 темы по 3 пункта, так их проще охватить взглядом. Названия тем я придумал для примера, их нужно согласовать. На телефоне карточки идут одна под другой.</span></div>
+<section class="v6 gutter">
+  <div class="v6__inner">
+    <h2 class="v6__title">Каждый день вас ждут</h2>
+    <div class="v6__grid" id="v6-grid"></div>
+  </div>
+</section>
+
+<!-- ===== 7 ===== -->
+<div class="cap gutter"><b>Вариант 7 · Строкой</b><span>Список набран крупным шрифтом заголовков в одну сплошную фразу, пункты разделены золотыми треугольниками. Читается как афиша; на телефоне шрифт мельче, строки переносятся сами.</span></div>
+<section class="v7 gutter">
+  <div class="v7__inner">
+    <h2 class="v7__title">Каждый день вас ждут</h2>
+    <p class="v7__flow" id="v7-flow"></p>
+  </div>
+</section>
+
+<!-- ===== 8 ===== -->
+<div class="cap gutter"><b>Вариант 8 · Рассвет</b><span>Над заголовком восходящее солнце, ниже список в две колонки крупным шрифтом с тонкими золотыми линиями. Воздушно и торжественно; на телефоне одна колонка.</span></div>
+<section class="v8 gutter">
+  <div class="v8__inner">
+    <svg class="v8__sun" viewBox="-110 -60 220 66" aria-hidden="true" id="v8-sun"></svg>
+    <h2 class="v8__title">Каждый день вас ждут</h2>
+    <ul class="v8__list js-list"></ul>
+  </div>
+</section>
+
+<div class="round gutter"><span>Подборка 1</span></div>
+
+<!-- ===== 1 ===== -->
+<div class="cap gutter"><b>Вариант 1 · Солнце</b><span>12 направлений расходятся лучами вокруг солнца, как часы дня. Самый «фестивальный» и запоминающийся. На телефоне солнце сверху, ниже список в две колонки.</span></div>
+<section class="v1 gutter">
+  <div class="v1__orbit">
+    <svg class="v1__rays" viewBox="-100 -100 200 200" aria-hidden="true" id="v1-rays"></svg>
+    <div class="v1__sun"><h2>Каждый<br>день<br>вас ждут</h2></div>
+    <ul class="v1__list" id="v1-list"></ul>
+  </div>
+</section>
+
+<!-- ===== 2 ===== -->
+<div class="cap gutter"><b>Вариант 2 · Плитки</b><span>Светлая секция-передышка между тёмными блоками. Плитки с жёлтыми уголками, как в рамках артистов; при наведении плитка темнеет. Спокойно и аккуратно, легко читается.</span></div>
+<section class="v2 gutter">
+  <div class="v2__inner">
+    <h2 class="v2__title">Каждый день вас ждут</h2>
+    <ul class="v2__grid" id="v2-grid"></ul>
+  </div>
+</section>
+
+<!-- ===== 3 ===== -->
+<div class="cap gutter"><b>Вариант 3 · Ленты</b><span>Две бегущие строки крупным шрифтом навстречу друг другу. Даёт движение и ощущение праздника; останавливается при наведении. Минус: весь список целиком сразу не прочитать.</span></div>
+<section class="v3">
+  <h2 class="v3__title gutter">Каждый день вас ждут</h2>
+  <div class="v3__row" id="v3-a"></div>
+  <div class="v3__row v3__row--outline" id="v3-b"></div>
+</section>
+
+<!-- ===== 4 ===== -->
+<div class="cap gutter"><b>Вариант 4 · Жёлтый список</b><span>Яркая жёлтая полоса: заголовок слева, список справа в две колонки. Максимально просто и читаемо, хорошо выделяется на странице.</span></div>
+<section class="v4 gutter">
+  <div class="v4__inner">
+    <h2 class="v4__title">Каждый день вас&nbsp;ждут<small>12 направлений программы</small></h2>
+    <ul class="v4__list" id="v4-list"></ul>
+  </div>
+</section>
+<div style="height:40px"></div>
+
+<script>
+(function () {
+  var ITEMS = [
+    'Телесные и дыхательные практики', 'Йога и медитация', 'Трансформационные практики',
+    'Женский круг', 'Мужской клуб', 'Сердечная тантра', 'Сатсанги', 'Экстатичные танцы',
+    'Этно-концерты', 'Звуковые медитации', 'Актёрское мастерство', 'Детская программа'
+  ];
+  function esc(t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+
+  // 1. Солнце
+  document.getElementById('v1-list').innerHTML = ITEMS.map(function (t, i) {
+    return '<li style="--i:' + i + '">' + esc(t) + '</li>';
+  }).join('');
+  var s = '<circle class="ring" r="96"/>';
+  for (var k = 0; k < 48; k++) {
+    var deg = k * 7.5 - 75, a = deg * Math.PI / 180, main = k % 4 === 0;
+    var r1 = 46, r2 = main ? 53 : 49;
+    s += '<line class="' + (main ? 'ray' : 'ray-s') + '" x1="' + (r1 * Math.cos(a)).toFixed(2) + '" y1="' + (r1 * Math.sin(a)).toFixed(2) +
+         '" x2="' + (r2 * Math.cos(a)).toFixed(2) + '" y2="' + (r2 * Math.sin(a)).toFixed(2) + '"/>';
+  }
+  document.getElementById('v1-rays').innerHTML = s;
+
+  // 2. Плитки
+  var tri = '<svg viewBox="0 0 26 22" aria-hidden="true"><path d="M13 0 L26 22 H0 Z"/></svg>';
+  document.getElementById('v2-grid').innerHTML = ITEMS.map(function (t) { return '<li>' + tri + '<span>' + esc(t) + '</span></li>'; }).join('');
+
+  // 3. Ленты: делим список пополам, каждую половину дублируем для бесшовной прокрутки
+  function row(list) {
+    var li = list.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
+    return '<ul>' + li + '</ul><ul aria-hidden="true">' + li + '</ul>';
+  }
+  document.getElementById('v3-a').innerHTML = row(ITEMS.slice(0, 6));
+  document.getElementById('v3-b').innerHTML = row(ITEMS.slice(6));
+
+  // 4. Жёлтый список
+  document.getElementById('v4-list').innerHTML = ITEMS.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
+
+  // 5 и 8. Простые списки
+  [].forEach.call(document.querySelectorAll('.js-list'), function (ul) {
+    ul.innerHTML = ITEMS.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
+  });
+
+  // 6. По темам (названия тем — для примера, на согласование)
+  var GROUPS = [
+    ['Тело', ['Телесные и дыхательные практики', 'Йога и медитация', 'Экстатичные танцы']],
+    ['Сердце', ['Сердечная тантра', 'Женский круг', 'Мужской клуб']],
+    ['Дух', ['Сатсанги', 'Трансформационные практики', 'Звуковые медитации']],
+    ['Творчество', ['Этно-концерты', 'Актёрское мастерство', 'Детская программа']]
+  ];
+  document.getElementById('v6-grid').innerHTML = GROUPS.map(function (g) {
+    return '<div class="v6__card"><h3>' + esc(g[0]) + '</h3><ul>' +
+      g[1].map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>';
+  }).join('');
+
+  // 7. Строкой
+  var sep = '<svg viewBox="0 0 20 18" aria-hidden="true"><path d="M10 0 L20 18 H0 Z"/></svg>';
+  document.getElementById('v7-flow').innerHTML = ITEMS.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join(' ' + sep + ' ');
+
+  // 8. Восходящее солнце: полукруг, лучи, линия горизонта
+  var u = '<path class="disc" d="M-34 0 A34 34 0 0 1 34 0 Z"/><line class="hor" x1="-108" y1="0" x2="108" y2="0"/>';
+  for (var j = 0; j <= 16; j++) {
+    var ang = Math.PI + j * Math.PI / 16, big = j % 2 === 0;
+    var q1 = 42, q2 = big ? 58 : 50;
+    u += '<line class="' + (big ? 'ray' : 'ray-s') + '" x1="' + (q1 * Math.cos(ang)).toFixed(2) + '" y1="' + (q1 * Math.sin(ang)).toFixed(2) +
+         '" x2="' + (q2 * Math.cos(ang)).toFixed(2) + '" y2="' + (q2 * Math.sin(ang)).toFixed(2) + '"/>';
+  }
+  document.getElementById('v8-sun').innerHTML = u;
+})();
+</script>
