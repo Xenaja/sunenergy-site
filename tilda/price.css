@@ -30,7 +30,7 @@
 .sepr__card::before { top: -1.5px; left: -1.5px; border-top-width: 3px; border-left-width: 3px; }
 .sepr__card::after { bottom: -1.5px; right: -1.5px; border-bottom-width: 3px; border-right-width: 3px; }
 
-.sepr__who { font-family: var(--pr-font-head); font-weight: 700; font-size: 28px; line-height: 1.2; margin: 0 0 6px; }
+.sepr__who { font-family: var(--pr-font-head); font-weight: 700; font-size: 28px; line-height: 1.2; margin: 0 0 18px; }
 .sepr__card--accent .sepr__who { color: var(--pr-gold); }
 .sepr__note { font-size: 15px; line-height: 1.45; margin: 0 0 24px; opacity: .75; }
 
