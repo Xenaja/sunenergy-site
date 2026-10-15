@@ -11,9 +11,10 @@
      photo — путь к фото в папке img ('img/Pavitra.jpg', регистр букв важен) или полная ссылка https://...
      pos   — какая часть фото попадёт в кружок и в попап: 'по горизонтали по вертикали',
              '50% 50%' — центр, '35% 50%' — левее, '50% 25%' — выше. Можно не указывать.
+     zoom  — приблизить фото в кружке (1.3 = на 30% крупнее). Можно не указывать.
      bio   — текст для попапа «Подробнее» в обратных кавычках `...`; абзацы разделяем пустой строкой. */
   var ARTISTS = [
-    { name: 'Татьяна Валеева', photo: 'img/Valeeva.jpg', pos: '50% 31%', bio: 'Текст о Татьяне Валеевой.' },
+    { name: 'Татьяна Валеева', photo: 'img/Valeeva.jpg', pos: '50% 38%', zoom: 1.35, bio: 'Текст о Татьяне Валеевой.' },
     { name: 'Павитра', photo: 'img/Pavitra.jpg', pos: '36% 50%', bio: `
 Павитра – проводник Три йоги, Парной йоги и Тантры, гонг-медитации. Более 20 лет практикует и проводит йогу, медитацию, дыхательные практики и sound-healing.
 
@@ -86,8 +87,9 @@
   var frame = frameSVG();
   var cards = ARTISTS.map(function (a, i) {
     var pic = a.photo
-      ? '<img class="mpa-card__photo" src="' + esc(url(a.photo)) + '" alt="' + esc(a.name) + '" loading="lazy"' +
-        (a.pos ? ' style="object-position:' + esc(a.pos) + '"' : '') + '>'
+      ? '<div class="mpa-card__photo"><img src="' + esc(url(a.photo)) + '" alt="' + esc(a.name) + '" loading="lazy" style="' +
+        (a.pos ? 'object-position:' + esc(a.pos) + ';' : '') +
+        (a.zoom ? 'transform:scale(' + +a.zoom + ');transform-origin:' + esc(a.pos || '50% 50%') + ';' : '') + '"></div>'
       : '<div class="mpa-card__initials">' + esc(initials(a.name)) + '</div>';
     return '<div class="mpa-card"><div class="mpa-card__frame">' + frame + pic + '</div>' +
       '<h3 class="mpa-card__name">' + esc(a.name) + '</h3><div class="mpa-card__line"></div>' +
