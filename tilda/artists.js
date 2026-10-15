@@ -5,6 +5,7 @@
     <script src="https://xenaja.github.io/sunenergy-site/tilda/artists.js"></script>
   Всё остальное (вёрстка, стили, фото) подтягивается отсюда.
   Фото кладём в папку tilda/img/ и пишем в photo путь вида 'img/имя.jpg'.
+  После добавления фото запустить make-photos.sh — он сделает лёгкие копии в img/thumb и img/full.
   ============================================================ */
 (function () {
   /* ====== ДАННЫЕ: правим только здесь ======
@@ -41,6 +42,11 @@
   var BASE = script ? script.src.replace(/[^\/]*$/, '') : '';
   var VER = script && script.src.split('?')[1] || '';
   function url(p) { return !p || /^(https?:)?\/\//.test(p) ? p : BASE + p; }
+  // Лёгкие копии фото: img/thumb/*.webp для кружков, img/full/*.webp для попапа
+  function sized(p, dir) {
+    if (!p || /^(https?:)?\/\//.test(p)) return url(p);
+    return BASE + p.replace(/([^\/]+)\.\w+$/, dir + '/$1.webp');
+  }
 
   var mount = document.getElementById('se-artists');
   if (!mount) { mount = document.createElement('div'); script.parentNode.insertBefore(mount, script); }
@@ -86,7 +92,7 @@
   var frame = frameSVG();
   var cards = ARTISTS.map(function (a, i) {
     var pic = a.photo
-      ? '<div class="mpa-card__photo"><img src="' + esc(url(a.photo)) + '" alt="' + esc(a.name) + '" loading="lazy" style="' +
+      ? '<div class="mpa-card__photo"><img src="' + esc(sized(a.photo, 'thumb')) + '" alt="' + esc(a.name) + '" decoding="async" style="' +
         (a.pos ? 'object-position:' + esc(a.pos) + ';' : '') +
         (a.zoom ? 'transform:scale(' + +a.zoom + ');transform-origin:' + esc(a.pos || '50% 50%') + ';' : '') + '"></div>'
       : '<div class="mpa-card__initials">' + esc(initials(a.name)) + '</div>';
@@ -125,7 +131,7 @@
     modal.querySelector('.mpa-modal__bio').innerHTML =
       a.bio.trim().split(/\n\s*\n/).map(function (p) { return '<p>' + esc(p.trim()) + '</p>'; }).join('');
     if (a.photo) {
-      mPhoto.src = url(a.photo); mPhoto.alt = a.name; mPhoto.style.objectPosition = a.pos || ''; mPhoto.hidden = false;
+      mPhoto.src = sized(a.photo, 'full'); mPhoto.alt = a.name; mPhoto.style.objectPosition = a.pos || ''; mPhoto.hidden = false;
     } else { mPhoto.hidden = true; }
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
@@ -138,6 +144,19 @@
     document.body.style.overflow = '';
     if (lastBtn) lastBtn.focus();
   }
+
+  // Фото для попапа начинаем грузить заранее — при наведении на «Подробнее»
+  var warmed = {};
+  function warm(e) {
+    var b = e.target.closest && e.target.closest('.mpa-card__more');
+    if (!b || warmed[b.dataset.i]) return;
+    var a = ARTISTS[+b.dataset.i];
+    warmed[b.dataset.i] = 1;
+    if (a.photo) new Image().src = sized(a.photo, 'full');
+  }
+  mount.addEventListener('mouseover', warm);
+  mount.addEventListener('touchstart', warm, { passive: true });
+  mount.addEventListener('focusin', warm);
 
   mount.addEventListener('click', function (e) {
     var b = e.target.closest('.mpa-card__more');
