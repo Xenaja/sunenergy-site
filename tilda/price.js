@@ -15,8 +15,8 @@
   ];
   var PLANS = [
     {
-      who: 'Партнёрам FullEnergy',
-      note: 'Для партнёров компании FullEnergy',
+      who: 'Партнёрам Full Energy',
+      note: 'Для партнёров компании Full Energy',
       accent: true,
       tiers: [
         { label: 'Первые 50 мест', price: 0 },
