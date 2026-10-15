@@ -26,7 +26,7 @@
 .mpa__lead { font-size: 26px; line-height: 1.4; text-align: center; margin: 0 0 14px; }
 .mpa__grid {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 60px 56px; margin-top: 160px; padding: 0 130px;
+  gap: 60px 56px; margin-top: 56px; padding: 0 130px;
 }
 .mpa-card { display: flex; flex-direction: column; }
 .mpa-card__frame { position: relative; width: 100%; aspect-ratio: 1; }
@@ -85,13 +85,13 @@
 @media (max-width: 1100px) {
   .mpa__title { font-size: 36px; }
   .mpa__lead { font-size: 20px; }
-  .mpa__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 70px; padding: 0 60px; }
+  .mpa__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 44px; padding: 0 60px; }
 }
 @media (max-width: 640px) {
   .mpa { padding-bottom: 60px; }
   .mpa__title { font-size: 28px; }
   .mpa__lead { font-size: 17px; }
-  .mpa__grid { grid-template-columns: 1fr; padding: 0 30px; margin-top: 50px; gap: 50px; }
+  .mpa__grid { grid-template-columns: 1fr; padding: 0 30px; margin-top: 36px; gap: 50px; }
   .mpa-card__name { font-size: 22px; margin-top: 30px; }
   .mpa-card__line { margin: 20px 0 24px; }
   .mpa-card__more { font-size: 18px; }
