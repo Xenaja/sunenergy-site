@@ -1,0 +1,58 @@
+/* Блок «Стоимость». Подключается из price.js автоматически. */
+.sepr {
+  --pr-navy: #2d2b5f;
+  --pr-ink: #1f1d45;
+  --pr-gold: #f2cf4a;
+  --pr-yellow: #fcc200;
+  --pr-line: rgba(45, 43, 95, .16);
+  --pr-font-head: 'Philosopher', Georgia, serif;
+  --pr-font-body: 'Montserrat', Arial, sans-serif;
+  background: #ffffff;
+  color: var(--pr-ink);
+  padding: 80px 16px;
+  font-family: var(--pr-font-body);
+}
+.sepr *, .sepr *::before, .sepr *::after { box-sizing: border-box; }
+.sepr__inner { max-width: 1040px; margin: 0 auto; }
+.sepr__title {
+  font-family: var(--pr-font-head); font-weight: 700;
+  font-size: clamp(34px, 4.4vw, 52px); line-height: 1.15;
+  text-transform: uppercase; text-align: center; color: var(--pr-navy); margin: 0 0 22px;
+}
+.sepr__lead { max-width: 720px; margin: 0 auto 50px; text-align: center; font-size: 19px; line-height: 1.55; }
+.sepr__lead p { margin: 0 0 8px; }
+.sepr__lead strong { font-weight: 600; }
+
+.sepr__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: stretch; }
+.sepr__card { position: relative; min-width: 0; padding: 40px 36px 30px; border: 1.5px solid var(--pr-navy); background: #fff; }
+.sepr__card--accent { background: var(--pr-navy); color: #fff; border-color: var(--pr-navy); }
+.sepr__card::before, .sepr__card::after { content: ''; position: absolute; width: 24px; height: 24px; border: 0 solid var(--pr-yellow); }
+.sepr__card::before { top: -1.5px; left: -1.5px; border-top-width: 3px; border-left-width: 3px; }
+.sepr__card::after { bottom: -1.5px; right: -1.5px; border-bottom-width: 3px; border-right-width: 3px; }
+
+.sepr__who { font-family: var(--pr-font-head); font-weight: 700; font-size: 28px; line-height: 1.2; margin: 0 0 6px; }
+.sepr__card--accent .sepr__who { color: var(--pr-gold); }
+.sepr__note { font-size: 15px; line-height: 1.45; margin: 0 0 24px; opacity: .75; }
+
+.sepr__tiers { list-style: none; margin: 0; padding: 0; }
+.sepr__tiers li {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  padding: 18px 0; border-top: 1px solid var(--pr-line);
+}
+.sepr__card--accent .sepr__tiers li { border-top-color: rgba(255, 255, 255, .16); }
+.sepr__tier { font-size: 16px; font-weight: 500; line-height: 1.35; min-width: 0; }
+.sepr__sum { font-family: var(--pr-font-head); font-weight: 700; font-size: 30px; line-height: 1; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.sepr__sum--gift { color: var(--pr-yellow); }
+.sepr__card:not(.sepr__card--accent) .sepr__sum--gift { color: #c98f00; }
+
+.sepr__foot { text-align: center; font-size: 15px; line-height: 1.5; margin: 30px auto 0; max-width: 720px; opacity: .75; }
+
+@media (max-width: 800px) {
+  .sepr { padding: 56px 16px; }
+  .sepr__lead { font-size: 17px; margin-bottom: 36px; }
+  .sepr__grid { grid-template-columns: 1fr; gap: 20px; }
+  .sepr__card { padding: 32px 22px 22px; }
+  .sepr__who { font-size: 25px; }
+  .sepr__sum { font-size: 26px; }
+  .sepr__tiers li { padding: 15px 0; }
+}
