@@ -16,7 +16,7 @@
 .sepr__inner { max-width: 1040px; margin: 0 auto; }
 .sepr__title {
   font-family: var(--pr-font-head); font-weight: 700;
-  font-size: clamp(28px, 4vw, 46px); line-height: 1.15;
+  font-size: clamp(26px, 3vw, 32px); line-height: 1.15;
   text-transform: uppercase; text-align: center; color: var(--pr-navy); margin: 0 0 22px;
 }
 .sepr__lead { max-width: 720px; margin: 0 auto 50px; text-align: center; font-size: 19px; line-height: 1.55; }
